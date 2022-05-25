@@ -1,30 +1,52 @@
-row1 = [1, 2, 3]
-row2 = [4, 5, 6]
-row3 = [7, 8, 9]
-
-map = [row1, row2, row3]
-#       0     1     2
-
-# column1 = [1, 4, 7]
-# column2 = [2, 5, 8]
-# column3 = [3, 6, 9]
-
-position = input("Number: ")
-number_of_choice = int(position) - 1
-
-# map[0][0]
-
-if int(position) >= 11 and int(position) <= 13:
-  position_of_choice = int(position) - 11
-  map[position_of_choice][0] = "x"
-
-elif int(position) >= 21 and int(position) <= 23:
-  position_of_choice = int(position) - 21
-  map[position_of_choice][1] = "x"
-
-elif int(position) >= 31 and int(position) <= 33:
-  position_of_choice = int(position) - 31
-  map[position_of_choice][2] = "x"
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+text = input("Insert a text/word:\n")
+shift = int(input("How many shift:\n"))
+alphabet_length = len(alphabet)
+text_length = len(text)
 
 
-print(f"{row1}\n{row2}\n{row3}\n")
+##MAKE THE LETTER IN THE TEXT SEPERATED AND STORED INSIDE A LIST##
+def encrypt(text, shift):
+  text_seperated = []
+
+  for num in range(0, text_length):
+    position = alphabet.index(text[num])
+    # print(letter_from_text - 26)
+    negative_position = position - alphabet_length
+    # print(negative_position)
+    negative_position_letter = alphabet[negative_position]
+    
+  
+    ##AFTER SHIFTED##
+    position_shifted = negative_position + shift
+    letter_shifted = alphabet[position_shifted] 
+  
+    text_seperated += letter_shifted
+    
+    # print(negative_position_letter)
+    # text_seperated.append(letter_from_text)
+  text_encrypted = "".join(text_seperated)
+  
+  print(text_encrypted)
+  # print(alphabet.index(text_seperated))
+  
+  # for num in range(0, len(text_seperated)):
+
+
+encrypt(text=text, shift=shift)
+
+
+#####################ALTERNATIVELY#####################
+
+def encrypt(plain_text, shift_amount):
+
+  cipher_text = ""
+  #Immediately concatinate the element from the for() function below to the cipher_text without putting it inside a list first.
+  for letter in plain_text:
+    position = alphabet.index(letter)
+    new_position = position + shift_amount
+    new_letter = alphabet[new_position]
+    cipher_text += new_letter
+  print(f"The encoded text is {cipher_text}")
+
+encrypt(plain_text=text, shift_amount=shift)
